@@ -1,0 +1,25 @@
+def is_balanced(expr):
+    stack = []
+    opening_brackets = ["(", "{", "["]
+    closing_brackets = [")", "}", "]"]
+    bracket_pairs = {")": "(", "}": "{", "]": "["}
+    for char in expr:
+        if char in opening_brackets:
+            stack.append(char)
+        elif char in closing_brackets:
+            if not stack or stack.pop() != bracket_pairs[char]:
+                return False
+
+    return not stack
+
+expr = "([]{}(){})"
+expr1 = "()"
+expr2 = "()[]{}"
+expr3 = "([{}])"
+expr4 = "({[}])"
+
+print(expr, ":", is_balanced(expr))
+print(expr1, ":", is_balanced(expr1))
+print(expr2, ":", is_balanced(expr2))
+print(expr3, ":", is_balanced(expr3))
+print(expr4, ":", is_balanced(expr4))
